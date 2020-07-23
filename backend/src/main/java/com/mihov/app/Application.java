@@ -1,4 +1,4 @@
-package com.mihov.webnews;
+package com.mihov.app;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

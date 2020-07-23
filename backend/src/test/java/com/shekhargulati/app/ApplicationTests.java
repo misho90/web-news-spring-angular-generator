@@ -1,4 +1,4 @@
-package com.mihov.app;
+package com.shekhargulati.app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
