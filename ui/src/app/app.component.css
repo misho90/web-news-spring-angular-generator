@@ -1,0 +1,13 @@
+body {
+  
+  height: 100%;
+  position: relative;
+  opacity: 0.65;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.top-padding{
+  padding-top:1%;
+}
+

@@ -1,0 +1,40 @@
+.footer {
+  position: fixed;
+  bottom: 5px;
+  left:1%;
+  width: 98%;
+  height: 10%;
+  text-align: center;
+}
+.angular{
+    max-width: 5%;
+    height: auto;
+}
+.spring{
+    max-width: 6%;
+    height: auto;
+}
+.eclipse{
+    max-width: 8%;
+    height: auto;
+}
+.h2{
+    max-width: 4%;
+    height: auto;
+}
+.github{
+    max-width: 8%;
+    height: auto;
+}
+
+.column {
+    float: left;
+    width: 25%;
+}
+
+/* Clear floats after the columns */
+.outter:after {
+    content: "";
+    display: table;
+    clear: both;
+}

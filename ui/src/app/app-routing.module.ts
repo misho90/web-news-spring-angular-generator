@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Todo2Component } from './todo2/todo2.component';
-import { Todo1Component } from './todo1/todo1.component';
+import { ShowNewsComponent } from './components/show-news/show-news.component';
+import { AddNewFeedComponent } from "src/app/components/add-new-feed/add-new-feed.component";
 
 
 const routes: Routes = [
-  {path : 'todos1', component: Todo1Component},
-  {path : 'todos2', component: Todo2Component}
+  { path: '', component: ShowNewsComponent },//canActivate, RouteGuardService
+  { path: 'addNewComponent', component: AddNewFeedComponent },//canActivate, RouteGuardService
 ];
 
 @NgModule({

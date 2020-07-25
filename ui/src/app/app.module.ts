@@ -7,15 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import {  MatPaginatorModule } from '@angular/material/paginator';
-import { Todo2Component } from './todo2/todo2.component';
-import { Todo1Component } from './todo1/todo1.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ShowNewsComponent } from './components/show-news/show-news.component';
+import { AddNewFeedComponent } from './components/add-new-feed/add-new-feed.component';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Todo1Component,
-    Todo2Component
+    HeaderComponent,
+    FooterComponent,
+    ShowNewsComponent,
+    AddNewFeedComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,8 @@ import { Todo1Component } from './todo1/todo1.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

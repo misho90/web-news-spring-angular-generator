@@ -1,0 +1,7 @@
+
+#newsContainer > div:nth-child(odd) > a  {    
+    z-index: 2;
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+}

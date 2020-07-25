@@ -1,0 +1,19 @@
+<div class="jumbotron ">   
+    
+    <form>
+        <fieldset>
+          <legend>Добявяне на RSS FEED</legend>
+
+          <div class="form-group" (ngSubmit)="save()">
+            <label for="exampleInputEmail1">RSS feed URL</label>
+            <input type="text" class="form-control" id="exampleInputURL" #link="ngModel" [(ngModel)]="rssFeedSource.link" [ngModelOptions]="{standalone: true}" placeholder="Въведете адрес">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Име на сайта</label>
+            <input type="text" class="form-control" id="exampleInputName" #name="ngModel" [(ngModel)]="rssFeedSource.name" [ngModelOptions]="{standalone: true}" placeholder="Въведете име на сайта">
+          </div>
+
+          <button type="submit" (click)="save()" class="btn btn-primary">Запази</button>
+        </fieldset>
+      </form>
+</div>
