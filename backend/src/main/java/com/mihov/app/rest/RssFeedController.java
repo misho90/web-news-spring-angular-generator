@@ -22,7 +22,8 @@ public class RssFeedController {
 
 	@GetMapping("/printRSS") 
 	public ResponseEntity<List<RssFeedItemDto>> printRSS() {
+		
 		return ResponseEntity.status(HttpStatus.OK)
-				             .body(rssFeedReaderService.getFeed("https://www.dnes.bg/rss.php"));
+				             .body(rssFeedReaderService.retrieveNewest20());
 	}
 }

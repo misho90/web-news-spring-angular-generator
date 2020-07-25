@@ -9,8 +9,10 @@ import com.mihov.app.model.dto.RssFeedItemDto;
 import com.sun.syndication.feed.synd.SyndFeed;
 
 @Service
-public interface RSSFeedReaderService {
 
-	public List<RssFeedItemDto> getFeed(final String url);
+public interface RSSFeedReaderService {
+	public List<RssFeedItemDto> getFeed(final String url, final String sourceName);
+	
+	public List<RssFeedItemDto> retrieveNewest20();
 
 }

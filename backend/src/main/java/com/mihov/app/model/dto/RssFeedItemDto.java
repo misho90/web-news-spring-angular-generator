@@ -24,4 +24,8 @@ public class RssFeedItemDto {
 	@Setter
 	private Long guid;
 	
+	@Getter
+	@Setter
+	private String sourceName;
+	
 }
