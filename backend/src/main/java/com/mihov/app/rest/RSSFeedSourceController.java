@@ -1,10 +1,15 @@
 package com.mihov.app.rest;
 
 import java.net.URI;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +27,35 @@ public class RSSFeedSourceController {
 
 	private final RSSFeedSourceService rssFeedSourceService;
 	
-	@PostMapping("/createNewSource")
-	public ResponseEntity<Void> updateTodo( @RequestBody RssFeedSource source ){
-		
+	@PostMapping("/source")
+	public ResponseEntity<Void> createNewSource( @RequestBody RssFeedSource source ){
 		RssFeedSource createdSource = rssFeedSourceService.save(source);
-		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(createdSource.getId()).toUri();
-		
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created( ServletUriComponentsBuilder.fromCurrentRequest()
+				                                                  .path("/{id}")
+				                                                  .buildAndExpand(createdSource.getId())
+				                                                  .toUri()).build();
 	}
+	
+	@PutMapping("/source")
+	public ResponseEntity<Void> updateNewSource( @RequestBody RssFeedSource source ){
+		RssFeedSource createdSource = rssFeedSourceService.save(source);
+		return ResponseEntity.created( ServletUriComponentsBuilder.fromCurrentRequest()
+				                                                  .path("/{id}")
+				                                                  .buildAndExpand(createdSource.getId())
+				                                                  .toUri()).build();
+	}
+	
+	@DeleteMapping("/source/{id}")
+	public ResponseEntity<Void> deleteNewSource( @PathVariable  long id ){
+		rssFeedSourceService.delete(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<RssFeedSource>> getAllSources( ){
+	  return ResponseEntity.status(HttpStatus.OK)
+	                       .body(rssFeedSourceService.findAll());
+	}
+	
 }

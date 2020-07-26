@@ -11238,3 +11238,10 @@
    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
  }
  
+ body {
+  
+  height: 100%;
+  position: relative;
+  background-image: url("/assets/images/background.png");
+  background-size: auto;
+}

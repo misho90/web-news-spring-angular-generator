@@ -3,6 +3,7 @@ body {
   height: 100%;
   position: relative;
   opacity: 0.65;
+  background-image: url("/assets/images/background.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

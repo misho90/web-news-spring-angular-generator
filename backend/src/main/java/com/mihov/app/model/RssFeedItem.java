@@ -1,5 +1,6 @@
 package com.mihov.app.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,8 +20,10 @@ import lombok.Setter;
 @Table(name = "rssFeedItem")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RssFeedItem {
+public class RssFeedItem implements Serializable{
 
+	private static final long serialversionUID =1L; 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

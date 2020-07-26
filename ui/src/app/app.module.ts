@@ -10,8 +10,11 @@ import {  MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowNewsComponent } from './components/show-news/show-news.component';
-import { AddNewFeedComponent } from './components/add-new-feed/add-new-feed.component';
 import { FormsModule } from "@angular/forms";
+import { RssFeedSourcesComponet } from "src/app/components/feed-sources/feed-sources.component";
+import { LoginComponent } from './components/login/login.component';
+import { environment } from '../environments/environment';
+import { SharedDataService } from "src/app/services/shared-data.service";
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { FormsModule } from "@angular/forms";
     HeaderComponent,
     FooterComponent,
     ShowNewsComponent,
-    AddNewFeedComponent
+    RssFeedSourcesComponet,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { FormsModule } from "@angular/forms";
     MatPaginatorModule,
     FormsModule
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

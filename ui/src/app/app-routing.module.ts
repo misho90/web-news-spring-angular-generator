@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShowNewsComponent } from './components/show-news/show-news.component';
-import { AddNewFeedComponent } from "src/app/components/add-new-feed/add-new-feed.component";
+import { RssFeedSourcesComponet } from "src/app/components/feed-sources/feed-sources.component";
+import { LoginComponent } from "src/app/components/login/login.component";
 
 
-const routes: Routes = [
+const routes: Routes = [ 
   { path: '', component: ShowNewsComponent },//canActivate, RouteGuardService
-  { path: 'addNewComponent', component: AddNewFeedComponent },//canActivate, RouteGuardService
+  { path: 'rssSources', component: RssFeedSourcesComponet },//canActivate, RouteGuardService
+  { path: 'login', component: LoginComponent },//canActivate, RouteGuardService
 ];
 
 @NgModule({

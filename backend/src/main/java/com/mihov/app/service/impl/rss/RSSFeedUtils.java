@@ -1,4 +1,4 @@
-package com.mihov.app.service.rss;
+package com.mihov.app.service.impl.rss;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,7 +33,7 @@ public class RSSFeedUtils {
 		}
 	}
 
-	private static Long returnGuid(String link) {
+	public static Long returnGuid(String link) {
 		link = link.replace(".html", "");
 		if(link.lastIndexOf("/") == link.length() -1) {
 			link = link.substring(0, link.length() - 1);

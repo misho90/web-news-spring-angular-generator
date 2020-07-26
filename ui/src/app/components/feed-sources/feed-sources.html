@@ -1,4 +1,4 @@
-<div class="jumbotron ">   
+<div class="jumbotron " style="background-color: white">   
     
     <form>
         <fieldset>
@@ -16,4 +16,27 @@
           <button type="submit" (click)="save()" class="btn btn-primary">Запази</button>
         </fieldset>
       </form>
+<br>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Име</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let source of exsistingRssSources">
+            <th scope="row">{{source.id}}</th>
+            <td>{{source.link}}</td>
+            <td>{{source.name}}</td>
+            <td>
+                <button type="button" class="btn btn-warning" (click)="edit(source.id)">Редактиране</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger" (click)="delete(source.id)"> Изтриване</button>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
 </div>
+

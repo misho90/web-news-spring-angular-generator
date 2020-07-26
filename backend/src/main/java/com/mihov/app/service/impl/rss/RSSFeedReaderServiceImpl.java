@@ -1,4 +1,4 @@
-package com.mihov.app.service.rss;
+package com.mihov.app.service.impl.rss;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.mihov.app.model.dto.RssFeedItemDto;
 import com.mihov.app.repository.RssFeedItemRepository;
+import com.mihov.app.service.rss.RSSFeedReaderService;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;

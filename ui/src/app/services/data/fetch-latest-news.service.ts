@@ -17,10 +17,26 @@ export class RssFeedItemDto {
 })
 export class FetchLatestNewsService {
 
+  feedNews : RssFeedItemDto[];
+
   constructor(private http:HttpClient) { }
 
   retrieveLatestNews() {
-    return this.http.get<RssFeedItemDto[]>('http://localhost:8080/api/rss/printRSS');
+    return this.http.get<RssFeedItemDto[]>('/api/rss/printRSS');
     //console.log("Execute Hello World Bean Service")
   }
+ 
+  search(word){
+    return this.http.get<RssFeedItemDto[]>(
+              '/api/rss/search/' + word);
+  }
+
+  getFeedNews(){
+    return this.feedNews;
+  }
+
+  setFeedNews(feedNews : RssFeedItemDto[]){
+    return this.feedNews = feedNews;
+  }
+
 }
