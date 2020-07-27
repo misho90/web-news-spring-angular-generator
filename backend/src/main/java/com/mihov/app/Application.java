@@ -21,53 +21,48 @@ import java.lang.reflect.Method;
 @SpringBootApplication
 public class Application {
 
-    @Value("${rest.api.base.path}")
-    private String restApiBasePath;
-    @Value("${cors.allowed.origins}")
-    private String[] corsAllowedOrigins;
+  @Value("${rest.api.base.path}")
+  private String restApiBasePath;
+  @Value("${cors.allowed.origins}")
+  private String[] corsAllowedOrigins;
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedMethods("*")
-                        .allowedOrigins(corsAllowedOrigins);
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("*").allowedOrigins(corsAllowedOrigins);
+      }
+    };
+  }
+
+  @Bean
+  public WebMvcRegistrations webMvcRegistrationsHandlerMapping() {
+    Application application = this;
+    return new WebMvcRegistrations() {
+      @Override
+      public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+        return new RequestMappingHandlerMapping() {
+
+          @Override
+          protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mapping) {
+            Class<?> beanType = method.getDeclaringClass();
+            RestController restApiController = beanType.getAnnotation(RestController.class);
+            if (restApiController != null) {
+              PatternsRequestCondition apiPattern = new PatternsRequestCondition(application.restApiBasePath).combine(mapping.getPatternsCondition());
+
+              mapping = new RequestMappingInfo(mapping.getName(), apiPattern, mapping.getMethodsCondition(), mapping.getParamsCondition(),
+                  mapping.getHeadersCondition(), mapping.getConsumesCondition(), mapping.getProducesCondition(), mapping.getCustomCondition());
             }
+
+            super.registerHandlerMethod(handler, method, mapping);
+          }
         };
-    }
-
-    @Bean
-    public WebMvcRegistrations webMvcRegistrationsHandlerMapping() {
-        Application application = this;
-        return new WebMvcRegistrations() {
-            @Override
-            public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-                return new RequestMappingHandlerMapping() {
-
-                    @Override
-                    protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mapping) {
-                        Class<?> beanType = method.getDeclaringClass();
-                        RestController restApiController = beanType.getAnnotation(RestController.class);
-                        if (restApiController != null) {
-                            PatternsRequestCondition apiPattern = new PatternsRequestCondition(application.restApiBasePath)
-                                    .combine(mapping.getPatternsCondition());
-
-                            mapping = new RequestMappingInfo(mapping.getName(), apiPattern,
-                                    mapping.getMethodsCondition(), mapping.getParamsCondition(),
-                                    mapping.getHeadersCondition(), mapping.getConsumesCondition(),
-                                    mapping.getProducesCondition(), mapping.getCustomCondition());
-                        }
-
-                        super.registerHandlerMethod(handler, method, mapping);
-                    }
-                };
-            }
-        };
-    }
+      }
+    };
+  }
 }

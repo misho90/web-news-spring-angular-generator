@@ -1,18 +1,14 @@
 package com.mihov.app.service.rss;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.mihov.app.model.dto.RssFeedItemDto;
 import org.springframework.stereotype.Service;
 
-import com.mihov.app.model.dto.RssFeedItemDto;
-import com.sun.syndication.feed.synd.SyndFeed;
+import java.util.List;
 
 @Service
 
 public interface RSSFeedReaderService {
-	public List<RssFeedItemDto> getFeed(final String url, final String sourceName);
-	
-	public List<RssFeedItemDto> retrieveNewest20();
+  public List<RssFeedItemDto> getFeed(final String url, final String sourceName);
 
+  public List<RssFeedItemDto> retrieveNewest20();
 }

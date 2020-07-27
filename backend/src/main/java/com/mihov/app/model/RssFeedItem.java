@@ -1,7 +1,9 @@
 package com.mihov.app.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,43 +12,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "rssFeedItem")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RssFeedItem implements Serializable{
+public class RssFeedItem implements Serializable {
 
-	private static final long serialversionUID =1L; 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+  private static final long serialversionUID = 1L;
 
-	@Getter
-	@Setter
-	private String title;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-	@Getter
-	@Setter
-	private String link;
-	
-	@Getter
-	@Setter
-	private Date date;
-	
-	@Getter
-	@Setter
-	private long guid;
-	
-	@Getter
-	@Setter
-	@ManyToOne
-    @JoinColumn(name="feedSource_id", nullable=false)
-	private RssFeedSource feedSource;
+  @Getter
+  @Setter
+  private String title;
+
+  @Getter
+  @Setter
+  private String link;
+
+  @Getter
+  @Setter
+  private Date date;
+
+  @Getter
+  @Setter
+  private long guid;
+
+  @Getter
+  @Setter
+  @ManyToOne
+  @JoinColumn(name = "feedSource_id", nullable = false)
+  private RssFeedSource feedSource;
 }

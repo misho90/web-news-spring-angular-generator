@@ -1,7 +1,8 @@
 package com.mihov.app.model;
 
-import java.io.Serializable;
-import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,32 +11,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "rssFeedSource")
 @NoArgsConstructor
-public class RssFeedSource implements Serializable{
-	
-	private static final long serialversionUID =1L; 
+public class RssFeedSource implements Serializable {
 
-	@Id 
-	@Getter
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+  private static final long serialversionUID = 1L;
 
-	@Getter
-	@Setter
-	private String name;
+  @Id
+  @Getter
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-	@Getter
-	@Setter
-	private String link;
-	
-	@OneToMany(mappedBy="feedSource", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<RssFeedItem> rssFeedItem;
-	
+  @Getter
+  @Setter
+  private String name;
+
+  @Getter
+  @Setter
+  private String link;
+
+  @OneToMany(mappedBy = "feedSource", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<RssFeedItem> rssFeedItem;
 }
