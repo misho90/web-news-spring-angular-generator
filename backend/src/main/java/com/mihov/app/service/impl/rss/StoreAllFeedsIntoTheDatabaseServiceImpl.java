@@ -21,34 +21,34 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 @Transactional
-public class StoreAllFeedsIntoTheDatabaseServiceImpl{
+public class StoreAllFeedsIntoTheDatabaseServiceImpl {
 
-	private final RssFeedSourceRepository rssFeedSourceRepository;
-	
-	private final RssFeedItemRepository rssFeedItemRepository;
-	
-	private final RSSFeedReaderService rssFeedReaderService;
+  private final RssFeedSourceRepository rssFeedSourceRepository;
 
-	@Scheduled(fixedRate = 60000)
-	public void sheduledStoreIntoTheDatabase() {
-		List<RssFeedSource> rssFeedSources =rssFeedSourceRepository.findAll();
-		
-		List<RssFeedItemDto> list = rssFeedSources.stream()
-		                                             .map(x -> rssFeedReaderService.getFeed(x.getLink(),x.getName()))
-		                                             .collect(Collectors.toList())
-		                                             .stream()
-		                                             .flatMap(List::stream)
-		                                             .collect(Collectors.toList());
-		list.stream().forEach(x -> storeRssFeedItem(x));
-		
-	}
-	
-	private void storeRssFeedItem(RssFeedItemDto feed) {
-		Optional<RssFeedItem> item = this.rssFeedItemRepository.getByLink(feed.getLink());
-	    if(!item.isPresent()) {
-	    	RssFeedSource feedSource = this.rssFeedSourceRepository.getByName(feed.getSourceName());
-	    	rssFeedItemRepository.save(new RssFeedItem(null,feed.getTitle(), feed.getLink(), feed.getDate(), feed.getGuid(), feedSource));
-	    };
-		
-	}
+  private final RssFeedItemRepository rssFeedItemRepository;
+
+  private final RSSFeedReaderService rssFeedReaderService;
+
+  @Scheduled(fixedRate = 60000)
+  public void sheduledStoreIntoTheDatabase() {
+    List<RssFeedSource> rssFeedSources = rssFeedSourceRepository.findAll();
+
+    rssFeedSources.stream()
+                  .map(x -> rssFeedReaderService.getFeed(x.getLink(), x.getName()))
+                  //		                                           .collect(Collectors.toList())
+                  //		                                           .stream()
+                  .flatMap(List::stream)
+                  .forEach(x -> storeRssFeedItem(x));
+    //		                                           .collect(Collectors.toList());
+//    list.stream();
+  }
+
+  private void storeRssFeedItem(RssFeedItemDto feed) {
+    Optional<RssFeedItem> item = this.rssFeedItemRepository.getByLink(feed.getLink());
+    if (!item.isPresent()) {
+      RssFeedSource feedSource = this.rssFeedSourceRepository.getByName(feed.getSourceName());
+      rssFeedItemRepository.save(new RssFeedItem(null, feed.getTitle(), feed.getLink(), feed.getDate(), feed.getGuid(), feedSource));
+    }
+    ;
+  }
 }
