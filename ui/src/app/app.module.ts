@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import {  MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowNewsComponent } from './components/show-news/show-news.component';
@@ -15,6 +15,8 @@ import { RssFeedSourcesComponet } from "src/app/components/feed-sources/feed-sou
 import { LoginComponent } from './components/login/login.component';
 import { environment } from '../environments/environment';
 import { SharedDataService } from "src/app/services/shared-data.service";
+import { BasicAuthenticationService } from './services/basic-authentication-service';
+import { HttpIntercepterBasicAuthService } from './services/http/http-intercepter-basic-auth.service';
 
 
 @NgModule({
@@ -35,7 +37,10 @@ import { SharedDataService } from "src/app/services/shared-data.service";
     MatPaginatorModule,
     FormsModule
   ],
-  providers: [SharedDataService],
+  providers: [
+    SharedDataService,
+    BasicAuthenticationService,
+    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FetchLatestNewsService, RssFeedItemDto } from "src/app/services/data/fetch-latest-news.service";
-import { RssFeedSourcesComponet } from "src/app/components/feed-sources/feed-sources.component";
-import { RssFeedSource } from "src/app/services/data/rss-feed-source.service";
 import { SharedDataService } from "src/app/services/shared-data.service";
-import { ShowNewsComponent } from "src/app/components/show-news/show-news.component";
 
 @Component({
   selector: 'app-header',
@@ -22,6 +19,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.phrase = "";
     this.sharedDataService.currentMessage.subscribe(message => this.sharedData = message)
+    this.fetchLatestNews.retrieveLatestNews();
   }
 
   search(){

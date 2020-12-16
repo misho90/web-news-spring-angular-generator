@@ -4,7 +4,7 @@
         <fieldset>
           <legend>Вход</legend>
 
-          <div class="form-group" (ngSubmit)="login()">
+          <div class="form-group" (ngSubmit)="handleJWTAuthLogin()">
             <label for="exampleInputEmail1">Потребител</label>
             <input type="username" class="form-control" id="exampleInputURL" #username="ngModel" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" placeholder="Въведете потребител">
           </div>
@@ -13,7 +13,7 @@
             <input type="password" class="form-control" id="exampleInputName" #password="ngModel" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" placeholder="Въведете парола">
           </div>
 
-          <button type="submit" (click)="login()" class="btn btn-primary">Вход</button>
+          <button type="submit" (click)="handleJWTAuthLogin()" class="btn btn-primary">Вход</button>
         </fieldset>
       </form>
     </div>
